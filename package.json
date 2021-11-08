@@ -1,0 +1,22 @@
+{
+  "name": "eval-08-11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:tailwinds":"tailwind build src/style.css -o public/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinu1763/Eval-08-11.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinu1763/Eval-08-11/issues"
+  },
+  "homepage": "https://github.com/dinu1763/Eval-08-11#readme",
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  }
+}
