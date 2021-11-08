@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Navbar</title>
+</head>
+<body>
+    <header class="w-full bg-gray-100">
+        <nav class="container items-center py-4 px-4 flex ">
+           <div class="py-1"><img src="./imgs/images.png" class="cursor-pointer w-16" alt=""></div>
+           <ul class="hidden sm:flex flex-1 justify-end  uppercase items-center gap-12">
+               <li class="cursor-pointer font-bold">Home</li>
+               <li class="cursor-pointer font-bold">Menu</li>
+               <li class="cursor-pointer font-bold">Receipe of the Day</li>
+               <li class="cursor-pointer font-bold">Cart</li>
+               <li class="cursor-pointer font-bold">login</li>
+           </ul>
+           
+          </nav>
+    </header>
+    <div class="bg-yellow-100 mt-2 w-full h-full p-10 pb-12 gap-4" id="food-items">
+        <div id="data" class="pb-10 p-12">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let food = document.getElementById("food-items");
+    let data_div = document.getElementById("data");
+    var showFood = () => {
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=a")
+    .then((res)=>{
+        return res.json()
+    })
+    .then((res)=>{
+       let data = res.meals;
+       console.log(data);
+       addFood(data);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+    
+}
+
+    // var addFood = (data) =>{
+    //     food.innerHTML = null;
+    //     data.forEach(({id:{idMeal}}) =>{
+    //         // let div = document.createElement("div");
+    //         console.log(data.idMeal);
+    //     });
+    // }
+    function addFood(data){
+      if(data === undefined){
+          return false;
+      }
+      data_div.innerHTML = null;
+      data.forEach(function (data_){
+          let p = document.createElement('h2');
+          let img = document.createElement("img");
+          img.src = data_.strMealThumb;
+          let desc = document.createElement('p');
+          desc.innerText = data_.strInstructions
+          p.innerText = data_.strMeal;
+          let br = document.createElement('br');
+          data_div.append(p, img, desc, br);
+          
+      
+      });
+     
+  }
+
+    showFood()
+</script>
